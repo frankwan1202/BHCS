@@ -1,0 +1,122 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "确定教学计划";
+}
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>确定教学计划 </h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入查询条件">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">查询</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>未确认教学计划列表 <small>Teaching plan list</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a id="bhcs-schedule-teachingplan-add-btn" data-toggle="modal" data-target=".bhcs-schedule-teachingplan-add-modal"><i class="fa fa-plus"></i></a>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+
+
+                        <div class="table-responsive">
+                            <table class="table table-striped jambo_table bulk_action bhcs-schedule-teachingplan-list">
+                                <thead>
+                                    <tr class="headings">
+                                        <th>
+                                            <input type="checkbox" id="check-all" class="flat">
+                                        </th>
+                                        <th class="column-title">学期名 </th>
+                                        <th class="column-title">专业 </th>
+                                        <th class="column-title">年级 </th>
+                                        <th class="column-title">所含课程数 </th>
+                                        <th class="column-title">备注 </th>
+                                        <th class="column-title">是否确认教学计划 </th>
+                                        <th class="column-title">创建人/创建时间 </th>
+                                        <th class="column-title">更新人/更新时间 </th>
+                                        <th class="column-title">操作 </th>
+                                        <th class="bulk-actions" colspan="10">
+                                            <a class="antoo" style="color:#fff; font-weight:500;">操作 ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody></tbody>
+                            </table>
+                            <div class="col-lg-12 datapager">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(function () {
+           
+            initalizeTable();
+            function initalizeTable() {
+                _tableData.tableClassName = 'bhcs-schedule-teachingplan-list';
+                _tableData.columnCount = 11;
+                _tableData.url = '@Url.Action("GetAcceptPage")';
+                _tableData.renderCallback = function (item) {
+                    return '<td class="a-center "> <input type="checkbox" class="item-flat" name="table_records"></td> ' +
+                        '<td class="">' + item.semester + '</td>' +
+                        '<td class="">' + item.majorName + '</td>' +
+                        '<td class="">' + item.gradeName + '</td>' +
+                        '<td class="">' + item.majorName + '</td>' +
+                        '<td class="">' + item.remark + '</td>' +
+                        '<td class="">未确认</td>' +
+                        '<td class="">' + item.createByName + '<br>' + item.createTimeStr + '</td>' +
+                        '<td class="">' + item.updateByName + '<br>' + item.updateTimeStr + '</td>' +
+                        '<td class="last"><a href="@Url.Action("AcceptTeachingPlan")?planId='+item.planId+'" class="btn btn-primary btn-xs">确认该计划</a></td>';
+                };
+                loadingData();
+            }
+
+           
+        });
+    </script>
+}

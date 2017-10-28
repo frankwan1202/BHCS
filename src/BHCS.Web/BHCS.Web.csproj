@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Areas\System\Views\Shared\" />
+    <Folder Include="Data\" />
+    <Folder Include="Filters\Auth\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+    <PackageReference Include="MySql.Data" Version="8.0.9-dmr" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.0" />
+    <PackageReference Include="System.Security.Permissions" Version="4.4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\theme\gentelella\vendors\select2\.github\CONTRIBUTING.md" />
+    <None Include="wwwroot\theme\gentelella\vendors\select2\.github\ISSUE_TEMPLATE.md" />
+    <None Include="wwwroot\theme\gentelella\vendors\select2\.github\PULL_REQUEST_TEMPLATE.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BHCS.Application\BHCS.Application.csproj" />
+    <ProjectReference Include="..\BHCS.Domain\BHCS.Domain.csproj" />
+    <ProjectReference Include="..\BHCS.Infrastructure\BHCS.Infrastructure.csproj" />
+    <ProjectReference Include="..\BHCS.Querying\BHCS.Querying.csproj" />
+    <ProjectReference Include="..\BHCS.Repositories.DbCommon\BHCS.Repositories.DbCommon.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="netstandard">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\netstandard.library\2.0.0\build\netstandard2.0\ref\netstandard.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

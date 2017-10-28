@@ -1,0 +1,155 @@
+﻿@{Layout="";}
+<!DOCTYPE html>
+<html lang="cn">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>登陆系统 - 深圳职业技术学院智能排课系统</title>
+
+    <!-- Bootstrap -->
+    <link href="~/theme/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/theme/gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/theme/gentelella/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="~/theme/gentelella/vendors/animate.css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="~/theme/gentelella/build/css/custom.css" rel="stylesheet">     
+      
+    <!-- PNotify -->
+    <link href="~/theme/gentelella/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="~/theme/gentelella/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="~/theme/gentelella/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+  </head>
+
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+            <section class="login_content">
+                <form>
+                <h1>登陆系统</h1>
+                <div>
+                    <input type="text" class="form-control" name="account" placeholder="账号" required="" />
+                </div>
+                <div>
+                    <input type="password" class="form-control" name="password" placeholder="密码" required="" />
+                </div>
+                <div>
+                    <div class="col-md-6 no-padding">
+                        <input type="text" class="form-control" name="verifyCode" placeholder="验证码" required="" />
+                    </div>
+                    <div class="col-md-6">
+                        <a class="change-verifycode" href="#" title="更换验证码"><img class="pull-left verifycode" src="@Url.Action("GetVierificationCode","Common",new { area=""})" /></a>
+                    </div>
+                </div>
+                    <div class="clear"></div>
+                <div>
+                    <a class="btn btn-default submit bhcs-account-login-btn" >登陆</a>
+                    <!-- <a class="reset_pass" href="#">Lost your password?</a> -->
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="separator">
+                    <!-- <p class="change_link">New to site?
+                    <a href="#signup" class="to_register"> Create Account </a>
+                    </p> -->
+
+                    <div class="clearfix"></div>
+                    <br />
+
+                    <div>
+                    <h4><i style="margin-right:10px;"><img src="~/theme/gentelella/images/logo.png" width="40px" /></i>深圳职业技术学院智能排课系统</h4>
+                    <p>©2017 All Rights Reserved. 秦皇岛博赫科技开发有限公司</p>
+                    </div>
+                </div>
+                </form>
+          </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+            <form>
+              <h1>Create Account</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Username" required="" />
+              </div>
+              <div>
+                <input type="email" class="form-control" placeholder="Email" required="" />
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" required="" />
+              </div>
+              <div>
+                <a class="btn btn-default submit" href="index.html">Submit</a>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Already a member ?
+                  <a href="#signin" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-paw"></i> 深圳职业技术学院智能排课系统</h1>
+                  <p>©2016 All Rights Reserved. 秦皇岛博赫科技开发有限公司</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+      <script src="~/theme/gentelella/vendors/jquery/dist/jquery.min.js"></script>           
+      <!-- Bootstrap -->
+      <script src="~/theme/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js"></script> 
+      <!-- PNotify -->
+      <script src="~/theme/gentelella/vendors/pnotify/dist/pnotify.js"></script>
+      <script src="~/theme/gentelella/vendors/pnotify/dist/pnotify.buttons.js"></script>
+      <script src="~/theme/gentelella/vendors/pnotify/dist/pnotify.nonblock.js"></script>      
+      <!-- Custom Theme Scripts -->
+      <script src="~/theme/gentelella/build/js/custom.js"></script>
+      <script type="text/javascript">
+          $(function () {
+              $('.change-verifycode').on('click', function () {
+                  loadVerifyCode();
+              });
+              $('.bhcs-account-login-btn').on('click', function () {
+                  var formdata = $('form').serialize();
+                  $.post('@Url.Action("login")', data = formdata, function (data) {
+                      if (data.state) {
+                          PNotifySuccess('登陆成功！');
+                          window.location.href = '@Url.Action("index","home")';
+                          return;
+                      } else
+                      {
+                          PNotifyError(data.message);
+                          loadVerifyCode();
+                          return;
+                      }
+                  });
+              });
+
+              loadVerifyCode();
+
+              function loadVerifyCode() {
+                  $('.verifycode').attr('src', '@Url.Action("GetVierificationCode", "Common", new { area = "" })?rand=' + Math.random());
+              }
+          })
+      </script>
+  </body>
+</html>

@@ -1,0 +1,166 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "页面管理";
+}
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>页面管理 </h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入查询条件">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">查询</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>页面列表 <small>Page list</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                           
+                            <li>
+                                <a id="bhcs-system-page-add-btn" data-toggle="modal" data-target=".bhcs-system-page-add-modal"><i class="fa fa-plus"> 添加页面</i></a>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+
+
+                        <div class="table-responsive">
+                            <table class="table table-striped jambo_table bulk_action bhcs-system-page-list">
+                                <thead>
+                                    <tr class="headings">
+                                        <th>
+                                            <input type="checkbox" id="check-all" class="flat">
+                                        </th>
+                                        <th class="column-title">页面名 </th>
+                                        <th class="column-title">Url </th>
+                                        <th class="column-title">操作 </th>
+                                        <th class="bulk-actions" colspan="10">
+                                            <a class="antoo" style="color:#fff; font-weight:500;">操作 ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody></tbody>
+                            </table>
+                            <div class="col-lg-12 datapager">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="modal fade bhcs-system-page-add-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form class="form-horizontal  form-label-left bhcs-system-page-add-form" data-parsley-validate="validate">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">新增页面</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                                页面名 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input class="form-control col-md-7 col-xs-12"
+                                       data-parsley-required="true"
+                                       data-parsley-required-message="页面名不能为空" name="Name" placeholder="请输入页面名" required="required" type="text">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Url">
+                                Url <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input class="form-control col-md-7 col-xs-12"
+                                       data-parsley-required="true"
+                                       data-parsley-required-message="Url不能为空" name="Url" placeholder="请输入Url" required="required" type="text">
+                            </div>
+                        </div>
+                        <input type="hidden" name="MenuId" value="@ViewBag.MenuId" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary bhcs-system-page-add-btn-save">保存</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(function () {
+            $('.bhcs-system-page-add-form').parsley().on('form:submit', function () {
+                var formData = $(".bhcs-system-page-add-form").serialize();
+
+                $.ajax({
+                    url: '@Url.Action("CreateNewPage")',
+                    data: formData,
+                    dataType: 'json',
+                    type: 'post',
+                    success: function (data) {
+                        if (data.state) {
+                            PNotifySuccess(data.message);
+                            $('.bhcs-system-page-add-modal').modal('hide');
+                            reloadingData();
+                        }
+                        else {
+                            PNotifyError(data.message);
+                        }
+
+                        return false;
+                    },
+                    error: function () {
+                        PNotifyError('网络错误');
+                        return false;
+                    }
+                })
+                return false;
+            });
+
+            initalizeTable();
+            function initalizeTable() {
+                _tableData.tableClassName = 'bhcs-system-page-list';
+                _tableData.columnCount = 11;
+                _tableData.url = '@Url.Action("GetPagePage")';
+                _tableData.data='MenuId=@ViewBag.MenuId';
+                _tableData.renderCallback = function (item) {
+                    return '<td class="a-center "> <input type="checkbox" class="item-flat" name="table_records"></td> ' +
+                        '<td class="">' + item.name + '</td>' +
+                        '<td class="">' + item.url + '</td>' +
+                        '<td class="last"><a class="btn btn-xs btn-primary" href="@Url.Action("Function")?pageId='+item.pageId+'">查看功能</a></td>';
+                };
+                loadingData();
+            }
+        });
+    </script>
+}

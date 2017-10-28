@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="cn">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@ViewBag.Title - 深圳职业技术学院智能排课系统</title>
+
+    <!-- Bootstrap -->
+    <link href="~/theme/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/theme/gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/theme/gentelella/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/theme/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+      <!-- PNotify -->
+      <link href="~/theme/gentelella/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+      <link href="~/theme/gentelella/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+      <link href="~/theme/gentelella/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+      @RenderSection("styles",false)
+
+    <!-- Custom Theme Style -->
+    <link href="~/theme/gentelella/build/css/custom.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        @await Html.PartialAsync("_Left")
+
+        @await Html.PartialAsync("_Top")
+
+        @RenderBody()
+
+        @await Html.PartialAsync("_Footer")
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/theme/gentelella/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/theme/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+    <!-- iCheck -->
+    <script src="~/theme/gentelella/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="~/theme/gentelella/vendors/skycons/skycons.js"></script>
+   
+    <!-- DateJS -->
+    <script src="~/theme/gentelella/vendors/DateJS/build/date.js"></script>
+   
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/theme/gentelella/vendors/moment/min/moment.min.js"></script>
+    <script src="~/theme/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+      <!-- PNotify -->
+      <script src="~/theme/gentelella/vendors/pnotify/dist/pnotify.js"></script>
+      <script src="~/theme/gentelella/vendors/pnotify/dist/pnotify.buttons.js"></script>
+      <script src="~/theme/gentelella/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+
+      <!-- Parsley -->
+      <script src="~/theme/gentelella/vendors/parsleyjs/dist/parsley.min.js" charset="utf-8"></script>
+      <script src="~/theme/gentelella/vendors/parsleyjs/dist/i18n/zh_cn.js" charset="utf-8"></script>
+
+      @RenderSection("scripts", false)
+    <!-- Custom Theme Scripts -->
+    <script src="~/theme/gentelella/build/js/custom.js"></script>
+
+	
+  </body>
+</html>

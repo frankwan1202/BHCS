@@ -1,0 +1,82 @@
+<div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title">排课系统</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="~/theme/gentelella/images/img.jpg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>欢迎</span>
+                <h2>@MvcContext.User.UserName</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>管理</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-home"></i> 首页 <span class="fa fa-chevron-down"></span></a></li>
+                  <li><a><i class="fa fa-edit"></i> 智能排课 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="form.html">规则管理</a></li>
+                      <li><a href="form_advanced.html">排课列表</a></li>
+                      <li><a href="form_validation.html">节假日管理</a></li>
+                      <li><a href="form_wizards.html">学校课表</a></li>
+                      <li><a asp-controller="teachingplan" asp-action="index" asp-area="schedule">制定教学计划</a></li>
+                        <li><a asp-controller="teachingplan" asp-action="accept" asp-area="schedule">确认教学计划</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-desktop"></i> 信息查询 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="general_elements.html">总课表</a></li>
+                      <li><a href="media_gallery.html">专业课课表</a></li>
+                      <li><a href="typography.html">我的课表</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-table"></i> 系统管理 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a asp-controller="account" asp-action="teacher" asp-area="system">教师管理</a></li>
+                      <li><a asp-controller="account" asp-action="student" asp-area="system">>学生管理</a></li>
+                      <li><a asp-controller="course" asp-action="index" asp-area="system">课程管理</a></li>
+                      <li><a asp-controller="course" asp-action="nature" asp-area="system">课程性质管理</a></li>
+                      <li><a asp-controller="classbuilding" asp-action="index" asp-area="system">教学楼管理</a></li>
+                      <li><a asp-controller="classroom" asp-action="index" asp-area="system">课室管理</a></li>
+                      <li><a asp-controller="classes" asp-action="index" asp-area="system">班级管理</a></li>
+                      <li><a asp-controller="grade" asp-action="index" asp-area="system">年级管理</a></li>
+                      <li><a asp-controller="role" asp-action="index" asp-area="system">角色管理</a></li>
+                      <li><a asp-controller="page" asp-action="index" asp-area="system">页面管理</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
