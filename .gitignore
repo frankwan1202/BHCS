@@ -1,0 +1,23 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+/src/.vs/Pyramid/v15/sqlite3
+/src/.vs/Pyramid/v15/sqlite3
+*.nupkg
+Pyramid
+*.suo
+/src/.vs/
+doc
+/src
