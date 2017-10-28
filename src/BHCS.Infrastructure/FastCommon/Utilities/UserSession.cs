@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,8 +11,7 @@ namespace BHCS.Infrastructure.FastCommon.Utilities
         string Account { get; }
 
         string UserName { get; }
-
-        HttpContext HttpContext { get; }
+        
     }
 
     public class NullUserSession : IUserSession
@@ -28,6 +26,5 @@ namespace BHCS.Infrastructure.FastCommon.Utilities
         public Guid UserId => _userID;
         public string Account => "";
         public string UserName => "";
-        public HttpContext HttpContext => null;
     }
 }

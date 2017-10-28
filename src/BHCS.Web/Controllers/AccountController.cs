@@ -34,9 +34,9 @@ namespace BHCS.Web.Controllers
         {
             try
             {
-                Ensure.NotNullOrWhiteSpace(verifyCode, "验证码不能为空！");
-                var sessionVerifyCode = HttpContext.Session.GetString(CommonController.LoginValidateCode_SessionName);
-                Ensure.MustBeEqual(verifyCode.ToLower(), sessionVerifyCode==null?"":sessionVerifyCode.ToLower(), "验证码不正确！");
+                //Ensure.NotNullOrWhiteSpace(verifyCode, "验证码不能为空！");
+                //var sessionVerifyCode = HttpContext.Session.GetString(CommonController.LoginValidateCode_SessionName);
+                //Ensure.MustBeEqual(verifyCode.ToLower(), sessionVerifyCode==null?"":sessionVerifyCode.ToLower(), "验证码不正确！");
                 var result = (LoginCommandResult)CommandBus.Send(command);
                 MvcContext.SetUser(_userQuery.GetLoginUserInfo(result.UserId));
 
