@@ -13,6 +13,8 @@ File Encoding         : 65001
 Date: 2017-10-28 23:10:02
 */
 
+use bhcs;
+
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------

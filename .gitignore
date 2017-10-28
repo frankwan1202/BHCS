@@ -20,4 +20,3 @@ Pyramid
 *.suo
 /src/.vs/
 doc
-/src
