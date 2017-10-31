@@ -211,9 +211,11 @@
                 _tableData.url = '@Url.Action("GetTeachingPlanPage")';
                 _tableData.renderCallback = function (item) {
                     var isAcceptStr = "未确认";
-                    var operation = '';
+                    var operationHtml = '';
                     if (item.isAccept) {
                         isAcceptStr = "已确认";
+                    } else {
+                        operationHtml = '<a href="@Url.Action("AcceptCourse")?planId=' + item.planId + '" class="btn btn-primary btn-xs">确认教学计划</a>';
                     }
 
                     return '<td class="a-center "> <input type="checkbox" class="item-flat" name="table_records"></td> ' +
@@ -225,7 +227,7 @@
                         '<td class="">' + isAcceptStr + '</td>' +
                         '<td class="">' + item.createByName + '<br>' + item.createTimeStr + '</td>' +
                         '<td class="">' + item.updateByName + '<br>' + item.updateTimeStr + '</td>' +
-                        '<td class="last"></td>';
+                        '<td class="last">' + operationHtml+'</td>';
                 };
                 loadingData();
             }

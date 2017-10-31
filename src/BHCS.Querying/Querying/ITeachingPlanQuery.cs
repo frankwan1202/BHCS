@@ -9,5 +9,7 @@ namespace BHCS.Querying.Querying
     public interface ITeachingPlanQuery
     {
         IPaged<TeachingPlanReadModel> GetPage(int pageIndex, int pageSize,bool? isAccept=null);
+
+        TeachingPlanReadModel Get(Guid planId);
     }
 }

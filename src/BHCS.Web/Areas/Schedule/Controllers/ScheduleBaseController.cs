@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BHCS.Web.Areas.Schedule.Controllers
 {
-    [Area("schedule")]
+    [Area("Schedule")]
     public abstract class ScheduleBaseController:BaseController
     {
     }

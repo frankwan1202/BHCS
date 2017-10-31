@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BHCS.Web.Areas.System.Controllers
 {
-    [Area("system")]
+    [Area("System")]
     public abstract class SystemBaseController:BaseController
     {
     }

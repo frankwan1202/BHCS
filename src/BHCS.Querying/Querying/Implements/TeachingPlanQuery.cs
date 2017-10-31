@@ -9,6 +9,15 @@ namespace BHCS.Querying.Querying.Implements
 {
     public class TeachingPlanQuery : ITeachingPlanQuery
     {
+        public TeachingPlanReadModel Get(Guid planId)
+        {
+            string strsql = $@"select tp.*,m.Name MajorName,g.Name GradeName
+                                from TeachingPlan tp inner join Major m on tp.MajorId=m.MajorId 
+                                 inner join Grade g on tp.GradeId=g.GradeId  
+                                 where tp.PlanId='{planId}'";
+            return QueryEnvironment.Current.GetQuickSqlSection().ToFirstOrDefault<TeachingPlanReadModel>(strsql);
+        }
+
         public IPaged<TeachingPlanReadModel> GetPage(int pageIndex, int pageSize, bool? isAccept = null)
         {
             string where = "where 1=1 ";

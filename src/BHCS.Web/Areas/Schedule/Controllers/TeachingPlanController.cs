@@ -13,10 +13,12 @@ namespace BHCS.Web.Areas.Schedule.Controllers
     public class TeachingPlanController:ScheduleBaseController
     {
         private readonly ITeachingPlanQuery _teachingPlanQuery;
+        private readonly ITeachingPlanCourseQuery _teachingPlanCourseQuery;
 
         public TeachingPlanController()
         {
             _teachingPlanQuery = ObjectContainer.Resolve<ITeachingPlanQuery>();
+            _teachingPlanCourseQuery = ObjectContainer.Resolve<ITeachingPlanCourseQuery>();
         }
 
         [HttpGet]
@@ -41,22 +43,19 @@ namespace BHCS.Web.Areas.Schedule.Controllers
         }
 
         [HttpGet]
-        [Priviledge(true,"/schedule/teachingplan/accept")]
-        public IActionResult Accept()
+        [Priviledge(true, "/schedule/teachingplan/acceptcourse")]
+        public IActionResult AcceptCourse(Guid planId)
         {
+            ViewBag.TeachingPlan = _teachingPlanQuery.Get(planId);
+            ViewBag.CourseList = _teachingPlanCourseQuery.GetList(planId);
             return View();
         }
 
         [HttpGet]
-        [Priviledge(4,"/schedule/teachingplan/getacceptpage")]
-        public IActionResult GetAcceptPage(int pageIndex=1,int pageSize=20)
+        [Priviledge(4,"/schedule/teachingplan/getacceptcourselist")]
+        public IActionResult GetAcceptCourseList(Guid planId)
         {
-            return Json(_teachingPlanQuery.GetPage(pageIndex, pageSize,false));
+            return Json(_teachingPlanCourseQuery.GetList(planId));
         }
-
-        //[HttpGet]
-        //[Priviledge(true, "/schedule/teachingplan/acceptcourse")]
-        //public IActionResult AcceptCourse(Guid planId);
-
     }
 }
